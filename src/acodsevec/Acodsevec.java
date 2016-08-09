@@ -16,6 +16,9 @@ public class Acodsevec {
      */
     public static void main(String[] args) {
         Dataset ds = new Dataset();
+        ds.crearDataset();
+        ds.imprimirDiagnosticos();
+        ds.imprimirEnfermedades();
     }
     
 }

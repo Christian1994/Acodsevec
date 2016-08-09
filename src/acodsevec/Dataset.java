@@ -21,8 +21,20 @@ public class Dataset {
     private final ArrayList<String> enfermedades = new ArrayList<>();
     
     // Constructor creando objetos de Historias Clínicas
-    public Dataset(){
-        
+    public Dataset(){                         
+        /*
+        System.out.print(d1.getReferencia() + " | ");
+        System.out.print(d1.getEnfermedad() + " | ");
+        d1.imprimirSintomas();
+        System.out.print("\n");
+        System.out.print(d2.getReferencia() + " | ");
+        System.out.print(d2.getEnfermedad() + " | ");
+        d2.imprimirSintomas();
+         */
+    }
+    
+    // Creación de dataset
+    public void crearDataset(){
         // Creación de historias clínicas
         Diagnostico d1 = new Diagnostico(1, "Hemoparásitos", new String[]{"Dolor en la parte posterior", "Anorexia", "Decaimiento", "Dolor renal"});
         Diagnostico d2 = new Diagnostico(2, "Hemoparásitos", new String[]{"Disminución de apetito", "Duerme mucho", "Brote abdominal", "Caída de pelo", "Cambio de color de pelo"});
@@ -85,27 +97,34 @@ public class Dataset {
         historiasClinicas.put(d27.getReferencia(), d27);
         historiasClinicas.put(d28.getReferencia(), d28);
         historiasClinicas.put(d29.getReferencia(), d29);
-        historiasClinicas.put(d30.getReferencia(), d30);
-        
-        // Impresión de datos de cada Diagnóstico
+        historiasClinicas.put(d30.getReferencia(), d30);        
+    }
+    
+    // Impresión de datos de cada Diagnóstico    
+    public void imprimirDiagnosticos(){
         for (long key : historiasClinicas.keySet()) {
             System.out.print(historiasClinicas.get(key).getReferencia() + " | ");
             System.out.print(historiasClinicas.get(key).getEnfermedad() + " | ");
             System.out.print(Arrays.toString(historiasClinicas.get(key).getSintomas()));
             System.out.print("\n");
         }        
-        
+    }
+    
+    // Impresión de todas las enfermedades sin repetir
+    public void imprimirEnfermedades(){
         // Agregación de enfermedades
         System.out.print("\n");
         for (long key : historiasClinicas.keySet()) {
             enfermedades.add(historiasClinicas.get(key).getEnfermedad());         
         }
-
+        
+        /*
         // Impresión de las enfermedades
         System.out.print("\n");
         for (int i = 0; i < enfermedades.size(); i++) {
             System.out.print(enfermedades.get(i) + " | ");            
-        }        
+        }
+        */
         
         // Eliminación de enfermedades repetidas
         HashSet<String> hashSet = new HashSet<>(enfermedades);
@@ -118,18 +137,5 @@ public class Dataset {
             System.out.print(disease + " ");
         }
         System.out.print("\n");        
-                
-        /*
-        System.out.print(d1.getReferencia() + " | ");
-        System.out.print(d1.getEnfermedad() + " | ");
-        d1.imprimirSintomas();
-        System.out.print("\n");
-        System.out.print(d2.getReferencia() + " | ");
-        System.out.print(d2.getEnfermedad() + " | ");
-        d2.imprimirSintomas();
-         */
     }
-    
-    
-    
 }
