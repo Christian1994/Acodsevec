@@ -19,6 +19,7 @@ public class Dataset {
 
     private final Map<Long, Diagnostico> historiasClinicas = new HashMap<>();
     private final ArrayList<String> enfermedades = new ArrayList<>();
+    private final ArrayList<String> sintomas = new ArrayList<>();
     
     // Constructor creando objetos de Historias Clínicas
     public Dataset(){                         
@@ -107,7 +108,8 @@ public class Dataset {
             System.out.print(historiasClinicas.get(key).getEnfermedad() + " | ");
             System.out.print(Arrays.toString(historiasClinicas.get(key).getSintomas()));
             System.out.print("\n");
-        }        
+        }
+        System.out.print("Cantidad de Historias clínicas: " + historiasClinicas.size());        
     }
     
     // Impresión de todas las enfermedades sin repetir
@@ -134,8 +136,37 @@ public class Dataset {
         // Impresión de las enfermedades sin repetir
         System.out.print("\n");        
         for(String disease : enfermedades){
-            System.out.print(disease + " ");
+            System.out.println(disease + " ");
         }
+        System.out.println("Cantidad enfermedades: " + enfermedades.size());
+    }
+    
+    public void imprimirSintomas(){
+        // Agregación de síntomas
+        for (long key : historiasClinicas.keySet()) {
+            String [] conjuntoSintomas = historiasClinicas.get(key).getSintomas();
+            sintomas.addAll(Arrays.asList(conjuntoSintomas));         
+        }
+        
+        /*
+        // Impresión de los síntomas
+        System.out.print("\n");
+        for (int i = 0; i < sintomas.size(); i++) {
+            System.out.println(sintomas.get(i));            
+        }
+        */
+
+        // Eliminación de síntomas repetidos
+        HashSet<String> hashSet = new HashSet<>(sintomas);
+		sintomas.clear();
+		sintomas.addAll(hashSet);
+        
+        // Impresión de las enfermedades sin repetir
         System.out.print("\n");        
+        for(String symptoms : sintomas){
+            System.out.println(symptoms + " ");
+        }
+        System.out.print("\n");
+        System.out.println("Cantidad síntomas: " + sintomas.size());        
     }
 }

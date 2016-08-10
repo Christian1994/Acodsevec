@@ -19,6 +19,7 @@ public class Acodsevec {
         ds.crearDataset();
         ds.imprimirDiagnosticos();
         ds.imprimirEnfermedades();
+        ds.imprimirSintomas();
     }
     
 }
