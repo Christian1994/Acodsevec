@@ -108,8 +108,7 @@ public class Dataset {
             System.out.print(historiasClinicas.get(key).getEnfermedad() + " | ");
             System.out.print(Arrays.toString(historiasClinicas.get(key).getSintomas()));
             System.out.print("\n");
-        }
-        System.out.print("Cantidad de Historias clínicas: " + historiasClinicas.size());        
+        }      
     }
     
     // Impresión de todas las enfermedades sin repetir
@@ -138,7 +137,6 @@ public class Dataset {
         for(String disease : enfermedades){
             System.out.println(disease + " ");
         }
-        System.out.println("Cantidad enfermedades: " + enfermedades.size());
     }
     
     public void imprimirSintomas(){
@@ -166,7 +164,12 @@ public class Dataset {
         for(String symptoms : sintomas){
             System.out.println(symptoms + " ");
         }
-        System.out.print("\n");
-        System.out.println("Cantidad síntomas: " + sintomas.size());        
+        System.out.print("\n");        
+    }
+    
+    public void estadisticas(){
+        System.out.println("Cantidad de Historias clínicas: " + historiasClinicas.size());
+        System.out.println("Cantidad de Enfermedades: " + enfermedades.size());
+        System.out.println("Cantidad de Síntomas: " + sintomas.size());
     }
 }
