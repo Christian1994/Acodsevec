@@ -18,20 +18,15 @@ import java.util.Map;
 public class Dataset {
 
     private final Map<Long, Diagnostico> historiasClinicas = new HashMap<>();
-    private final ArrayList<String> enfermedades = new ArrayList<>();
-    private final ArrayList<String> sintomas = new ArrayList<>();
     
-    // Constructor creando objetos de Historias Clínicas
+    private final ArrayList<String> enfermedades = new ArrayList<>();
+    private HashSet<String> conjEnfermedades;   // Atributo para el conjunto de enfermedades sin repetir
+    
+    private final ArrayList<String> sintomas = new ArrayList<>();
+    private HashSet<String> conjSintomas;   // Atributo para el conjunto de síntomas sin repetir
+    
     public Dataset(){                         
-        /*
-        System.out.print(d1.getReferencia() + " | ");
-        System.out.print(d1.getEnfermedad() + " | ");
-        d1.imprimirSintomas();
-        System.out.print("\n");
-        System.out.print(d2.getReferencia() + " | ");
-        System.out.print(d2.getEnfermedad() + " | ");
-        d2.imprimirSintomas();
-         */
+
     }
     
     // Creación de dataset
@@ -53,7 +48,7 @@ public class Dataset {
         Diagnostico d14 = new Diagnostico(14, "Hemoparásitos", new String[]{"Decaimiento", "Dolor abdominal", "Fiebre alta"});
         Diagnostico d15 = new Diagnostico(15, "Hemoparásitos", new String[]{"Jadeo", "No bebe agua", "Fiebre", "Sensibilidad renal"});
         Diagnostico d16 = new Diagnostico(16, "Hemoparásitos", new String[]{"Anorexia", "Fiebre alta", "Orina turbia"});
-        Diagnostico d17 = new Diagnostico(17, "Hemoparásitos", new String[]{"Fiebre alta", "Orina con sangre", "Heces con sangre", "Mal aliento", "Palidez", "Diarrea con sangre", "Dolor lumbal", "Hiperactividad"});
+        Diagnostico d17 = new Diagnostico(17, "Hemoparásitos", new String[]{"Fiebre alta", "Orina con sangre", "Heces con sangre", "Mal aliento", "Palidez", "Diarrea con sangre", "Dolor lumbar", "Hiperactividad"});
         Diagnostico d18 = new Diagnostico(18, "Hemoparásitos", new String[]{"Anorexia", "Fiebre"});
         Diagnostico d19 = new Diagnostico(19, "Hemoparásitos", new String[]{"Decaimiento", "Vómito amarillo"});
         Diagnostico d20 = new Diagnostico(20, "Coccidiosis", new String[]{"Vómito", "Diarrea", "Lagañas", "Nariz seca", "Diarrea muy líquida", "Mucosas pálidas"});
@@ -119,22 +114,12 @@ public class Dataset {
             enfermedades.add(historiasClinicas.get(key).getEnfermedad());         
         }
         
-        /*
-        // Impresión de las enfermedades
-        System.out.print("\n");
-        for (int i = 0; i < enfermedades.size(); i++) {
-            System.out.print(enfermedades.get(i) + " | ");            
-        }
-        */
-        
-        // Eliminación de enfermedades repetidas
-        HashSet<String> hashSet = new HashSet<>(enfermedades);
-		enfermedades.clear();
-		enfermedades.addAll(hashSet);
+        // Asignación para almacenar los elementos de enfermedades sin repetir
+        conjEnfermedades = new HashSet<>(enfermedades);
         
         // Impresión de las enfermedades sin repetir
         System.out.print("\n");        
-        for(String disease : enfermedades){
+        for(String disease : conjEnfermedades){
             System.out.println(disease + " ");
         }
     }
@@ -146,22 +131,12 @@ public class Dataset {
             sintomas.addAll(Arrays.asList(conjuntoSintomas));         
         }
         
-        /*
-        // Impresión de los síntomas
-        System.out.print("\n");
-        for (int i = 0; i < sintomas.size(); i++) {
-            System.out.println(sintomas.get(i));            
-        }
-        */
-
-        // Eliminación de síntomas repetidos
-        HashSet<String> hashSet = new HashSet<>(sintomas);
-		sintomas.clear();
-		sintomas.addAll(hashSet);
+        // Asignación para almacenamiento de elementos de síntomas sin repetir
+        conjSintomas = new HashSet<>(sintomas);
         
-        // Impresión de las enfermedades sin repetir
+        // Impresión de los síntomas sin repetir
         System.out.print("\n");        
-        for(String symptoms : sintomas){
+        for(String symptoms : conjSintomas){
             System.out.println(symptoms + " ");
         }
         System.out.print("\n");        
@@ -169,7 +144,7 @@ public class Dataset {
     
     public void estadisticas(){
         System.out.println("Cantidad de Historias clínicas: " + historiasClinicas.size());
-        System.out.println("Cantidad de Enfermedades: " + enfermedades.size());
-        System.out.println("Cantidad de Síntomas: " + sintomas.size());
+        System.out.println("Cantidad de Enfermedades: " + conjEnfermedades.size());
+        System.out.println("Cantidad de Síntomas: " + conjSintomas.size());
     }
 }
