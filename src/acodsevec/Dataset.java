@@ -33,36 +33,36 @@ public class Dataset {
     // Creación de dataset
     public void crearDataset(){
         // Creación de historias clínicas
-        Diagnostico d1 = new Diagnostico(1, "Hemoparásitos", new String[]{"Dolor en la parte posterior", "Anorexia", "Decaimiento", "Dolor renal"});
-        Diagnostico d2 = new Diagnostico(2, "Hemoparásitos", new String[]{"Disminución de apetito", "Duerme mucho", "Brote abdominal", "Caída de pelo", "Cambio de color de pelo"});
-        Diagnostico d3 = new Diagnostico(3, "Hemoparásitos", new String[]{"Decaimiento", "Agitación", "Fiebre alta"});
-        Diagnostico d4 = new Diagnostico(4, "Hemoparásitos", new String[]{"Disminución de apetito", "Decaimiento", "Dolor renal"});
-        Diagnostico d5 = new Diagnostico(5, "Hemoparásitos", new String[]{"Fiebre alta", "Decaimiento", "Duerme mucho", "Anorexia", "Tos"});
-        Diagnostico d6 = new Diagnostico(6, "Hemoparásitos", new String[]{"Decaimiento", "Anorexia", "Tos", "Lagañas", "Dolor lumbar"});
-        Diagnostico d7 = new Diagnostico(7, "Hemoparásitos", new String[]{"Letargo", "Fiebre alta", "Ganglios aumentados", "Dolor renal"});
-        Diagnostico d8 = new Diagnostico(8, "Hemoparásitos", new String[]{"Disminución de apetito", "Baba espesa", "Duerme mucho", "Mucosas pálidas", "Queratitis"});
-        Diagnostico d9 = new Diagnostico(9, "Hemoparásitos", new String[]{"Anorexia", "Ojos rojos", "Lagañas", "Duerme mucho", "Decaimiento", "Mucosas pálidas", "Fiebre"});
-        Diagnostico d10 = new Diagnostico(10, "Hemoparásitos", new String[]{"Agitación", "Decaimiento", "Disminución de apetito", "Fiebre alta"});
-        Diagnostico d11 = new Diagnostico(11, "Hemoparásitos", new String[]{"Ataque canino", "Decaimiento", "Anorexia", "Bebe poca agua", "Vómito amarillo", "Sarro leve", "Mucosas pálidas", "Fiebre"});
-        Diagnostico d12 = new Diagnostico(12, "Hemoparásitos", new String[]{"Anorexia", "No camina", "Jadeo", "Moco"});        
-        Diagnostico d13 = new Diagnostico(13, "Hemoparásitos", new String[]{"Depresión", "Decaimiento", "Dolor abdominal craneal", "Dolor renal"});
-        Diagnostico d14 = new Diagnostico(14, "Hemoparásitos", new String[]{"Decaimiento", "Dolor abdominal", "Fiebre alta"});
-        Diagnostico d15 = new Diagnostico(15, "Hemoparásitos", new String[]{"Jadeo", "No bebe agua", "Fiebre", "Sensibilidad renal"});
-        Diagnostico d16 = new Diagnostico(16, "Hemoparásitos", new String[]{"Anorexia", "Fiebre alta", "Orina turbia"});
-        Diagnostico d17 = new Diagnostico(17, "Hemoparásitos", new String[]{"Fiebre alta", "Orina con sangre", "Heces con sangre", "Mal aliento", "Palidez", "Diarrea con sangre", "Dolor lumbar", "Hiperactividad"});
-        Diagnostico d18 = new Diagnostico(18, "Hemoparásitos", new String[]{"Anorexia", "Fiebre"});
-        Diagnostico d19 = new Diagnostico(19, "Hemoparásitos", new String[]{"Decaimiento", "Vómito amarillo"});
-        Diagnostico d20 = new Diagnostico(20, "Coccidiosis", new String[]{"Vómito", "Diarrea", "Lagañas", "Nariz seca", "Diarrea muy líquida", "Mucosas pálidas"});
-        Diagnostico d21 = new Diagnostico(21, "Coccidiosis", new String[]{"Diarrea con sangre", "Borborigmos aumentados"});
-        Diagnostico d22 = new Diagnostico(22, "Coccidiosis", new String[]{"Diarrea muy líquida", "Diarrea con sangre", "Diarrea mal oliente", "Vómito"});
-        Diagnostico d23 = new Diagnostico(23, "Coccidiosis", new String[]{"Vómito amarillo con pintas de sangre", "Diarrea con sangre"});
-        Diagnostico d24 = new Diagnostico(24, "Coccidiosis", new String[]{"Decaimiento", "Diarrea muy líquida"});
-        Diagnostico d25 = new Diagnostico(25, "Coccidiosis", new String[]{"Diarrea", "Dolor abdominal"});
-        Diagnostico d26 = new Diagnostico(26, "Coccidiosis", new String[]{"Diarrea", "Vómito", "Disminución de apetito", "Fiebre"});
-        Diagnostico d27 = new Diagnostico(27, "Coccidiosis", new String[]{"Vómito amarillo", "Anorexia"});
-        Diagnostico d28 = new Diagnostico(28, "Coccidiosis", new String[]{"Vómito", "Decaimiento"});
-        Diagnostico d29 = new Diagnostico(29, "Coccidiosis", new String[]{"Diarrea con sangre", "Diarrea muy líquida", "Anorexia"});
-        Diagnostico d30 = new Diagnostico(30, "Coccidiosis", new String[]{"Anorexia", "Vómito", "Diarrea"});
+        Diagnostico d1 = new Diagnostico(1, "Hemoparásitos", new String[]{"Dolor en la parte posterior", "Anorexia", "Decaimiento", "Dolor renal"}, false);
+        Diagnostico d2 = new Diagnostico(2, "Hemoparásitos", new String[]{"Disminución de apetito", "Duerme mucho", "Brote abdominal", "Caída de pelo", "Cambio de color de pelo"}, false);
+        Diagnostico d3 = new Diagnostico(3, "Hemoparásitos", new String[]{"Decaimiento", "Agitación", "Fiebre alta"}, false);
+        Diagnostico d4 = new Diagnostico(4, "Hemoparásitos", new String[]{"Disminución de apetito", "Decaimiento", "Dolor renal"}, false);
+        Diagnostico d5 = new Diagnostico(5, "Hemoparásitos", new String[]{"Fiebre alta", "Decaimiento", "Duerme mucho", "Anorexia", "Tos"}, false);
+        Diagnostico d6 = new Diagnostico(6, "Hemoparásitos", new String[]{"Decaimiento", "Anorexia", "Tos", "Lagañas", "Dolor lumbar"}, false);
+        Diagnostico d7 = new Diagnostico(7, "Hemoparásitos", new String[]{"Letargo", "Fiebre alta", "Ganglios aumentados", "Dolor renal"}, false);
+        Diagnostico d8 = new Diagnostico(8, "Hemoparásitos", new String[]{"Disminución de apetito", "Baba espesa", "Duerme mucho", "Mucosas pálidas", "Queratitis"}, false);
+        Diagnostico d9 = new Diagnostico(9, "Hemoparásitos", new String[]{"Anorexia", "Ojos rojos", "Lagañas", "Duerme mucho", "Decaimiento", "Mucosas pálidas", "Fiebre"}, false);
+        Diagnostico d10 = new Diagnostico(10, "Hemoparásitos", new String[]{"Agitación", "Decaimiento", "Disminución de apetito", "Fiebre alta"}, false);
+        Diagnostico d11 = new Diagnostico(11, "Hemoparásitos", new String[]{"Ataque canino", "Decaimiento", "Anorexia", "Bebe poca agua", "Vómito amarillo", "Sarro leve", "Mucosas pálidas", "Fiebre"}, false);
+        Diagnostico d12 = new Diagnostico(12, "Hemoparásitos", new String[]{"Anorexia", "No camina", "Jadeo", "Moco"}, false);        
+        Diagnostico d13 = new Diagnostico(13, "Hemoparásitos", new String[]{"Depresión", "Decaimiento", "Dolor abdominal craneal", "Dolor renal"}, false);
+        Diagnostico d14 = new Diagnostico(14, "Hemoparásitos", new String[]{"Decaimiento", "Dolor abdominal", "Fiebre alta"}, false);
+        Diagnostico d15 = new Diagnostico(15, "Hemoparásitos", new String[]{"Jadeo", "No bebe agua", "Fiebre", "Sensibilidad renal"}, false);
+        Diagnostico d16 = new Diagnostico(16, "Hemoparásitos", new String[]{"Anorexia", "Fiebre alta", "Orina turbia"}, false);
+        Diagnostico d17 = new Diagnostico(17, "Hemoparásitos", new String[]{"Fiebre alta", "Orina con sangre", "Heces con sangre", "Mal aliento", "Palidez", "Diarrea con sangre", "Dolor lumbar", "Hiperactividad"}, false);
+        Diagnostico d18 = new Diagnostico(18, "Hemoparásitos", new String[]{"Anorexia", "Fiebre"}, false);
+        Diagnostico d19 = new Diagnostico(19, "Hemoparásitos", new String[]{"Decaimiento", "Vómito amarillo"}, false);
+        Diagnostico d20 = new Diagnostico(20, "Coccidiosis", new String[]{"Vómito", "Diarrea", "Lagañas", "Nariz seca", "Diarrea muy líquida", "Mucosas pálidas"}, false);
+        Diagnostico d21 = new Diagnostico(21, "Coccidiosis", new String[]{"Diarrea con sangre", "Borborigmos aumentados"}, false);
+        Diagnostico d22 = new Diagnostico(22, "Coccidiosis", new String[]{"Diarrea muy líquida", "Diarrea con sangre", "Diarrea mal oliente", "Vómito"}, false);
+        Diagnostico d23 = new Diagnostico(23, "Coccidiosis", new String[]{"Vómito amarillo con pintas de sangre", "Diarrea con sangre"}, false);
+        Diagnostico d24 = new Diagnostico(24, "Coccidiosis", new String[]{"Decaimiento", "Diarrea muy líquida"}, false);
+        Diagnostico d25 = new Diagnostico(25, "Coccidiosis", new String[]{"Diarrea", "Dolor abdominal"}, false);
+        Diagnostico d26 = new Diagnostico(26, "Coccidiosis", new String[]{"Diarrea", "Vómito", "Disminución de apetito", "Fiebre"}, false);
+        Diagnostico d27 = new Diagnostico(27, "Coccidiosis", new String[]{"Vómito amarillo", "Anorexia"}, false);
+        Diagnostico d28 = new Diagnostico(28, "Coccidiosis", new String[]{"Vómito", "Decaimiento"}, false);
+        Diagnostico d29 = new Diagnostico(29, "Coccidiosis", new String[]{"Diarrea con sangre", "Diarrea muy líquida", "Anorexia"}, false);
+        Diagnostico d30 = new Diagnostico(30, "Coccidiosis", new String[]{"Anorexia", "Vómito", "Diarrea"}, false);
         
         // Añadiendo cada historia clínica al Hash Map
         historiasClinicas.put(d1.getReferencia(), d1);
@@ -146,10 +146,16 @@ public class Dataset {
     
     // Selecciona aleatoriamente las historias clínicas para entrenamiento
     public void seleccionAleatoria(){
-        for(int i = 0; i < historiasClinicas.size() * 0.8; i++){
+        int i = 0;
+        do{
             long claveAux = (long)(historiasClinicas.size() * Math.random() + 1);
-            trainingHC.put(claveAux, historiasClinicas.get(claveAux));
+            if(!historiasClinicas.get(claveAux).isSeleccionado()){
+                trainingHC.put(claveAux, historiasClinicas.get(claveAux));
+                trainingHC.get(claveAux).setSeleccionado(true);
+                i++;
+            }
         }
+        while(i < historiasClinicas.size() * 0.8);
     }
     
     // Impresión de historias clínicas seleccionadas aleatoriamente    

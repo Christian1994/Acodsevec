@@ -14,11 +14,13 @@ public class Diagnostico {
     private long referencia;
     private String enfermedad;
     private String [] sintomas;
+    private boolean seleccionado;
     
-    public Diagnostico(long ref, String disease, String [] symptoms){
+    public Diagnostico(long ref, String disease, String [] symptoms, boolean selected){
         this.referencia = ref;
         this.enfermedad = disease;
         this.sintomas = symptoms;
+        this.seleccionado = selected;
     }
 
     public long getReferencia() {
@@ -44,7 +46,15 @@ public class Diagnostico {
     public void setSintomas(String[] sintomas) {
         this.sintomas = sintomas;
     }
-    
+
+    public boolean isSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(boolean seleccionado) {
+        this.seleccionado = seleccionado;
+    }
+            
     public void imprimirSintomas(){
         for(String s : this.sintomas){
             System.out.print(s + ". ");
