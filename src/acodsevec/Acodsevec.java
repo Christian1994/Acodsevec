@@ -22,6 +22,7 @@ public class Acodsevec {
         ds.imprimirSintomas();
         ds.seleccionAleatoria();
         ds.imprimirDiagnosticosSeleccionados();
+        ds.entrenamiento();
         ds.estadisticas();
     }
     

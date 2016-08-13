@@ -20,11 +20,13 @@ public class Dataset {
     private final Map<Long, Diagnostico> historiasClinicas = new HashMap<>();
     private final Map<Long, Diagnostico> trainingHC = new HashMap<>();
     
-    private final ArrayList<String> enfermedades = new ArrayList<>();
-    private HashSet<String> conjEnfermedades;   // Atributo para el conjunto de enfermedades sin repetir
+    private final ArrayList<String> enfermedadesHC = new ArrayList<>();
+    private final ArrayList<String> conjEnfermedades = new ArrayList<>();   // Atributo para el conjunto de enfermedades sin repetir
     
-    private final ArrayList<String> sintomas = new ArrayList<>();
-    private HashSet<String> conjSintomas;   // Atributo para el conjunto de síntomas sin repetir
+    private final ArrayList<String> sintomasHC = new ArrayList<>();
+    private final ArrayList<String> conjSintomas = new ArrayList<>();   // Atributo para el conjunto de síntomas sin repetir
+    
+    private int [][] matrizConocimiento;
     
     public Dataset(){                         
 
@@ -112,11 +114,12 @@ public class Dataset {
         // Agregación de enfermedades
         System.out.print("\n");
         for (long key : historiasClinicas.keySet()) {
-            enfermedades.add(historiasClinicas.get(key).getEnfermedad());         
+            enfermedadesHC.add(historiasClinicas.get(key).getEnfermedad());         
         }
         
         // Asignación para almacenar los elementos de enfermedades sin repetir
-        conjEnfermedades = new HashSet<>(enfermedades);
+        HashSet<String> diseaseSet = new HashSet<>(enfermedadesHC);
+        conjEnfermedades.addAll(diseaseSet);
         
         // Impresión de las enfermedades sin repetir
         System.out.print("\n");        
@@ -130,11 +133,12 @@ public class Dataset {
         // Agregación de síntomas
         for (long key : historiasClinicas.keySet()) {
             String [] conjuntoSintomas = historiasClinicas.get(key).getSintomas();
-            sintomas.addAll(Arrays.asList(conjuntoSintomas));         
+            sintomasHC.addAll(Arrays.asList(conjuntoSintomas));         
         }
         
         // Asignación para almacenamiento de elementos de síntomas sin repetir
-        conjSintomas = new HashSet<>(sintomas);
+        HashSet<String> symptomSet = new HashSet<>(sintomasHC);
+        conjSintomas.addAll(symptomSet);
         
         // Impresión de los síntomas sin repetir
         System.out.print("\n");        
@@ -176,5 +180,15 @@ public class Dataset {
         System.out.println("Cantidad de Síntomas: " + conjSintomas.size());
         System.out.println("");
         System.out.println("Cantidad de Historias clínicas seleccionadas: " + trainingHC.size());
+    }
+    
+    // Entrena al sistema
+    public void entrenamiento(){
+        matrizConocimiento = new int [conjEnfermedades.size()][conjSintomas.size()];
+        for(int i = 0; i < conjEnfermedades.size(); i++){
+            String enfermedad = conjEnfermedades.get(i);
+            System.out.println(enfermedad);
+        }
+        System.out.println();
     }
 }
