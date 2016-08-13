@@ -20,6 +20,8 @@ public class Acodsevec {
         ds.imprimirDiagnosticos();
         ds.imprimirEnfermedades();
         ds.imprimirSintomas();
+        ds.seleccionAleatoria();
+        ds.imprimirDiagnosticosSeleccionados();
         ds.estadisticas();
     }
     

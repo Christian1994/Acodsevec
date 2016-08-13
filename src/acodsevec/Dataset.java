@@ -18,6 +18,7 @@ import java.util.Map;
 public class Dataset {
 
     private final Map<Long, Diagnostico> historiasClinicas = new HashMap<>();
+    private final Map<Long, Diagnostico> trainingHC = new HashMap<>();
     
     private final ArrayList<String> enfermedades = new ArrayList<>();
     private HashSet<String> conjEnfermedades;   // Atributo para el conjunto de enfermedades sin repetir
@@ -124,6 +125,7 @@ public class Dataset {
         }
     }
     
+    // Impresión de todos los síntomas sin repetir
     public void imprimirSintomas(){
         // Agregación de síntomas
         for (long key : historiasClinicas.keySet()) {
@@ -142,9 +144,31 @@ public class Dataset {
         System.out.print("\n");        
     }
     
+    // Selecciona aleatoriamente las historias clínicas para entrenamiento
+    public void seleccionAleatoria(){
+        for(int i = 0; i < historiasClinicas.size() * 0.8; i++){
+            long claveAux = (long)(historiasClinicas.size() * Math.random() + 1);
+            trainingHC.put(claveAux, historiasClinicas.get(claveAux));
+        }
+    }
+    
+    // Impresión de historias clínicas seleccionadas aleatoriamente    
+    public void imprimirDiagnosticosSeleccionados(){
+        for (long key : trainingHC.keySet()) {
+            System.out.print(trainingHC.get(key).getReferencia() + " | ");
+            System.out.print(trainingHC.get(key).getEnfermedad() + " | ");
+            System.out.print(Arrays.toString(trainingHC.get(key).getSintomas()));
+            System.out.print("\n");
+        }
+        System.out.print("\n");
+    }
+    
+    // Muestra las estadísticas
     public void estadisticas(){
         System.out.println("Cantidad de Historias clínicas: " + historiasClinicas.size());
         System.out.println("Cantidad de Enfermedades: " + conjEnfermedades.size());
         System.out.println("Cantidad de Síntomas: " + conjSintomas.size());
+        System.out.println("");
+        System.out.println("Cantidad de Historias clínicas seleccionadas: " + trainingHC.size());
     }
 }
