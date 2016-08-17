@@ -185,9 +185,37 @@ public class Dataset {
     // Entrena al sistema
     public void entrenamiento(){
         matrizConocimiento = new int [conjEnfermedades.size()][conjSintomas.size()];
+        
         for(int i = 0; i < conjEnfermedades.size(); i++){
             String enfermedad = conjEnfermedades.get(i);
-            System.out.println(enfermedad);
+            
+            for(int j = 0; j < conjSintomas.size(); j++){
+                String sintoma = conjSintomas.get(j);
+                
+                for(long key: trainingHC.keySet()){
+                    if(enfermedad.equals(trainingHC.get(key).getEnfermedad())){
+                        int indexEnfermedad = i;
+                        String [] symptomSet = trainingHC.get(key).getSintomas();
+                        for(String symptom : symptomSet){
+                            if(sintoma.equals(symptom)){
+                                int indexSintoma = j;
+                                matrizConocimiento[indexEnfermedad][indexSintoma]++;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+        System.out.println();
+        
+        // Imprime la matriz de conocimiento entrenada para aplicar las técnicas de IA
+        for(int i = 0; i < matrizConocimiento.length; i++){
+            for(int j = 0; j < matrizConocimiento[i].length; j++){
+                System.out.print(matrizConocimiento[i][j] + " ");
+            }
+            System.out.println();
         }
         System.out.println();
     }
