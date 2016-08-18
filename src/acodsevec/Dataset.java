@@ -5,6 +5,7 @@
  */
 package acodsevec;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class Dataset {
     private final ArrayList<String> conjSintomas = new ArrayList<>();   // Atributo para el conjunto de síntomas sin repetir
     
     private int [][] matrizConocimiento;
+    private double [][] matrizNormalizada;
     
     public Dataset(){                         
 
@@ -208,7 +210,6 @@ public class Dataset {
             }
             
         }
-        System.out.println();
         
         // Imprime la matriz de conocimiento entrenada para aplicar las técnicas de IA
         for(int i = 0; i < matrizConocimiento.length; i++){
@@ -218,5 +219,44 @@ public class Dataset {
             System.out.println();
         }
         System.out.println();
+        
+        // Normaliza la tabla
+        this.normalizacion(matrizConocimiento);
+        
+        // Imprime la matriz de conocimiento normalizada entrenada para aplicar las técnicas de IA
+        DecimalFormat formateador = new DecimalFormat("0.0000");
+        for(int i = 0; i < matrizNormalizada.length; i++){
+            for(int j = 0; j < matrizNormalizada[i].length; j++){
+                System.out.print(formateador.format(matrizNormalizada[i][j]) + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();        
     }
+    
+//----------------------- Funciones auxiliares para las operaciones del Dataset --------------------------------
+    
+    // Función auxiliar para normalizar la tabla
+    public double [][] normalizacion(int [][] tabla){
+        matrizNormalizada = new double[conjEnfermedades.size()][conjSintomas.size()];
+        for(int i = 0; i < tabla.length; i++){
+            for(int j = 0; j < tabla[i].length; j++){
+                matrizNormalizada[i][j] = tabla[i][j] / this.normaVectorial(tabla[i]);
+            }
+        }
+        
+        return matrizNormalizada;
+    }
+    
+    // Función auxiliar para calcular la norma vectorial
+    public double normaVectorial(int [] arreglo){
+        double norma = 0.0;
+        
+        for(int i = 0; i < arreglo.length; i++){
+            norma += Math.pow(arreglo[i], 2);
+        }
+        
+        return Math.pow(norma, 0.5);
+    }
+    
 }
