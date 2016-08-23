@@ -30,6 +30,7 @@ public class Dataset {
     
     private int [][] matrizConocimiento;
     private double [][] matrizNormalizada;
+    private int [] cadenaPrueba;
     
     public Dataset(){                         
 
@@ -249,7 +250,23 @@ public class Dataset {
     
     // Prueba el sistema
     public void pruebas(){
-        
+        cadenaPrueba = new int [conjSintomas.size()];
+        for(long key: testingHC.keySet()){
+            String [] symptomSet = testingHC.get(key).getSintomas(); 
+            for(String symptom : symptomSet){
+                for(int i = 0; i < conjSintomas.size(); i++){
+                    String sintoma = conjSintomas.get(i);
+                    if(sintoma.equals(symptom)){
+                        cadenaPrueba[i] = 1;
+                    }                   
+                }
+            }
+            for(int i = 0; i < cadenaPrueba.length; i++){
+                System.out.print(cadenaPrueba[i] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
     
     // Muestra las estadísticas
