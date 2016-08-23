@@ -20,6 +20,7 @@ public class Dataset {
 
     private final Map<Long, Diagnostico> historiasClinicas = new HashMap<>();
     private final Map<Long, Diagnostico> trainingHC = new HashMap<>();
+    private final Map<Long, Diagnostico> testingHC = new HashMap<>();
     
     private final ArrayList<String> enfermedadesHC = new ArrayList<>();
     private final ArrayList<String> conjEnfermedades = new ArrayList<>();   // Atributo para el conjunto de enfermedades sin repetir
@@ -175,16 +176,7 @@ public class Dataset {
         System.out.print("\n");
     }
     
-    // Muestra las estadísticas
-    public void estadisticas(){
-        System.out.println("Cantidad de Historias clínicas: " + historiasClinicas.size());
-        System.out.println("Cantidad de Enfermedades: " + conjEnfermedades.size());
-        System.out.println("Cantidad de Síntomas: " + conjSintomas.size());
-        System.out.println("");
-        System.out.println("Cantidad de Historias clínicas seleccionadas: " + trainingHC.size());
-    }
-    
-    // Entrena al sistema
+    // Entrena al sistema mediante el algoritmo de clustering Modelo basado en número de palabras
     public void entrenamiento(){
         matrizConocimiento = new int [conjEnfermedades.size()][conjSintomas.size()];
         
@@ -234,9 +226,45 @@ public class Dataset {
         System.out.println();        
     }
     
+    // Selecciona el conjunto de HC's de prueba
+    public void crearConjuntoPrueba(){
+        for(long key : historiasClinicas.keySet()){
+            if(!historiasClinicas.get(key).isSeleccionado()){
+                testingHC.put(key, historiasClinicas.get(key));
+                testingHC.get(key).setSeleccionado(true);
+            }            
+        }        
+    }
+
+    // Impresión de historias clínicas seleccionadas aleatoriamente    
+    public void imprimirDiagnosticosPrueba(){
+        for (long key : testingHC.keySet()) {
+            System.out.print(testingHC.get(key).getReferencia() + " | ");
+            System.out.print(testingHC.get(key).getEnfermedad() + " | ");
+            System.out.print(Arrays.toString(testingHC.get(key).getSintomas()));
+            System.out.print("\n");
+        }
+        System.out.print("\n");
+    }    
+    
+    // Prueba el sistema
+    public void pruebas(){
+        
+    }
+    
+    // Muestra las estadísticas
+    public void estadisticas(){
+        System.out.println("Cantidad de Historias clínicas: " + historiasClinicas.size());
+        System.out.println("Cantidad de Enfermedades: " + conjEnfermedades.size());
+        System.out.println("Cantidad de Síntomas: " + conjSintomas.size());
+        System.out.println("");
+        System.out.println("Cantidad de Historias clínicas seleccionadas para entrenar: " + trainingHC.size());
+        System.out.println("Cantidad de Historias clínicas seleccionadas para probar: " + testingHC.size());
+    }    
+    
 //----------------------- Funciones auxiliares para las operaciones del Dataset --------------------------------
     
-    // Función auxiliar para normalizar la tabla
+    // Función auxiliar para normalizar la tabla (Valor elemento sobre la norma vectorial)
     public double [][] normalizacion(int [][] tabla){
         matrizNormalizada = new double[conjEnfermedades.size()][conjSintomas.size()];
         for(int i = 0; i < tabla.length; i++){

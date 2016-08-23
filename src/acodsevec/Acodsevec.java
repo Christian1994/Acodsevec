@@ -23,6 +23,9 @@ public class Acodsevec {
         ds.seleccionAleatoria();
         ds.imprimirDiagnosticosSeleccionados();
         ds.entrenamiento();
+        ds.crearConjuntoPrueba();
+        ds.imprimirDiagnosticosPrueba();
+        ds.pruebas();
         ds.estadisticas();
     }
     
