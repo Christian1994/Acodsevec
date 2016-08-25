@@ -32,6 +32,8 @@ public class Dataset {
     private double [][] matrizNormalizada;
     private int [] cadenaPrueba;
     
+    private double [] cadenaSimilaridad;
+    
     public Dataset(){                         
 
     }
@@ -250,23 +252,38 @@ public class Dataset {
     
     // Prueba el sistema
     public void pruebas(){
-        cadenaPrueba = new int [conjSintomas.size()];
         for(long key: testingHC.keySet()){
+            
+            cadenaPrueba = new int [conjSintomas.size()];
+            cadenaSimilaridad = new double [conjEnfermedades.size()];            
             String [] symptomSet = testingHC.get(key).getSintomas(); 
+            
+            // Crea la cadena de prueba
             for(String symptom : symptomSet){
                 for(int i = 0; i < conjSintomas.size(); i++){
                     String sintoma = conjSintomas.get(i);
                     if(sintoma.equals(symptom)){
                         cadenaPrueba[i] = 1;
-                    }                   
+                    }
                 }
             }
+            
             for(int i = 0; i < cadenaPrueba.length; i++){
                 System.out.print(cadenaPrueba[i] + " ");
             }
             System.out.println();
+            
+            // Medida de similaridad de HC de prueba con cada enfermedad (cluster)
+            for(int i = 0; i < cadenaSimilaridad.length; i++){
+                cadenaSimilaridad[i] = this.similaridad(matrizNormalizada[i], cadenaPrueba);
+                System.out.print(cadenaSimilaridad[i] + " ");                
+            }
+            
+            // Mayor similaridad determina el diagnóstico que arroje el sistema
+            System.out.println();
+            System.out.println("Mayor similaridad: " + this.mayorSimilaridad(cadenaSimilaridad));
+            System.out.println();           
         }
-        System.out.println();
     }
     
     // Muestra las estadísticas
@@ -302,6 +319,31 @@ public class Dataset {
         }
         
         return Math.pow(norma, 0.5);
+    }
+    
+    // Función auxiliar para calcular la medida de similaridad
+    public double similaridad(double [] normCadena, int [] testCadena){
+        double valorSimilaridad = 0.0;
+        
+        for(int i = 0; i < normCadena.length; i++){
+            valorSimilaridad += normCadena[i] * testCadena[i];
+        }
+        
+        return valorSimilaridad;
+    }
+    
+    // Función auxiliar para retornar el mayor valor de similaridad
+    public double mayorSimilaridad(double [] similarCadena){
+        int indice = 0;
+        double mayor = cadenaSimilaridad[indice];
+        for(int i = 0; i < cadenaSimilaridad.length; i++){
+            if(cadenaSimilaridad[i] > mayor){
+                mayor = cadenaSimilaridad[i];
+                indice = i;
+            }          
+        }
+        System.out.println("Diagnóstico: " + conjEnfermedades.get(indice));        
+        return mayor;
     }
     
 }
