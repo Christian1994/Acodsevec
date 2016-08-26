@@ -183,6 +183,7 @@ public class Dataset {
     public void entrenamiento(){
         matrizConocimiento = new int [conjEnfermedades.size()][conjSintomas.size()];
         
+        // Genera la matriz de conocimiento
         for(int i = 0; i < conjEnfermedades.size(); i++){
             String enfermedad = conjEnfermedades.get(i);
             
@@ -191,12 +192,10 @@ public class Dataset {
                 
                 for(long key: trainingHC.keySet()){
                     if(enfermedad.equals(trainingHC.get(key).getEnfermedad())){
-                        int indexEnfermedad = i;
                         String [] symptomSet = trainingHC.get(key).getSintomas();
                         for(String symptom : symptomSet){
                             if(sintoma.equals(symptom)){
-                                int indexSintoma = j;
-                                matrizConocimiento[indexEnfermedad][indexSintoma]++;
+                                matrizConocimiento[i][j]++;
                             }
                         }
                     }
