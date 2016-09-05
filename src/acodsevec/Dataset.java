@@ -33,6 +33,9 @@ public class Dataset {
     private int [] cadenaPrueba;
     
     private double [] cadenaSimilaridad;
+
+    private int cantidadAciertos = 0;
+    private int cantidadDesaciertos = 0;    
     
     public Dataset(){                         
 
@@ -124,7 +127,7 @@ public class Dataset {
         Diagnostico d81 = new Diagnostico(81, "Otitis", new String[]{"Cabeceo", "Irritación en las orejas", "Dolor"}, false);
         Diagnostico d82 = new Diagnostico(82, "Otitis", new String[]{"Eritrema", "Comezón en orejas", "Serumen", "Cabeceo", "Dolor en las orejas"}, false);
         Diagnostico d83 = new Diagnostico(83, "Otitis", new String[]{"Comezón en orejas", "Irritación en las orejas", "Dolor en las orejas", "Piel enrojecida"}, false);
-        Diagnostico d84 = new Diagnostico(84, "Dermatitis", new String[]{"Caída de pelo", "Alopecia", "Prurito", "Eritrema", ""}, false);
+        Diagnostico d84 = new Diagnostico(84, "Dermatitis", new String[]{"Caída de pelo", "Alopecia", "Prurito", "Eritrema"}, false);
         Diagnostico d85 = new Diagnostico(85, "Dermatitis", new String[]{"Alopecia", "Prurito"}, false);
         Diagnostico d86 = new Diagnostico(86, "Dermatitis", new String[]{"Alopecia", "Prurito", "Piel enrojecida", "Mal olor"}, false);
         Diagnostico d87 = new Diagnostico(87, "Dermatitis", new String[]{"Lesiones por contacto al pasto", "Piel seca"}, false);
@@ -421,9 +424,28 @@ public class Dataset {
             }
             
             // Mayor similaridad determina el diagnóstico que arroje el sistema
+            // Mayor similaridad determina el diagnóstico que arroje el sistema
+            int indice = 0;
+            double mayor = cadenaSimilaridad[indice];
+            for(int i = 0; i < cadenaSimilaridad.length; i++){
+                if(cadenaSimilaridad[i] > mayor){
+                    mayor = cadenaSimilaridad[i];
+                    indice = i;
+                }          
+            }
+            
+            System.out.println();            
+            System.out.println("Diagnóstico: " + conjEnfermedades.get(indice));            
+            System.out.println("Mayor similaridad: " + mayor);
+            System.out.println(testingHC.get(key).getEnfermedad() + " -> " + conjEnfermedades.get(indice));
             System.out.println();
-            System.out.println("Mayor similaridad: " + this.mayorSimilaridad(cadenaSimilaridad));
-            System.out.println();           
+            
+            if(testingHC.get(key).getEnfermedad().equals(conjEnfermedades.get(indice))){
+                cantidadAciertos++;
+            }
+            else{
+                cantidadDesaciertos++;
+            }          
         }
     }
     
@@ -435,6 +457,8 @@ public class Dataset {
         System.out.println("");
         System.out.println("Cantidad de Historias clínicas seleccionadas para entrenar: " + trainingHC.size());
         System.out.println("Cantidad de Historias clínicas seleccionadas para probar: " + testingHC.size());
+        System.out.println("Cantidad de aciertos: " + cantidadAciertos);
+        System.out.println("Cantidad de desaciertos: " + cantidadDesaciertos);        
     }    
     
 //----------------------- Funciones auxiliares para las operaciones del Dataset --------------------------------
@@ -474,7 +498,7 @@ public class Dataset {
     }
     
     // Función auxiliar para retornar el mayor valor de similaridad
-    public double mayorSimilaridad(double [] similarCadena){
+    /*public double mayorSimilaridad(double [] similarCadena){
         int indice = 0;
         double mayor = cadenaSimilaridad[indice];
         for(int i = 0; i < cadenaSimilaridad.length; i++){
@@ -485,6 +509,6 @@ public class Dataset {
         }
         System.out.println("Diagnóstico: " + conjEnfermedades.get(indice));        
         return mayor;
-    }
+    }*/
     
 }
