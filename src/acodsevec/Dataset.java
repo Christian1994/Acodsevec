@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import mersennetwister.MersenneTwisterFast;
 
 /**
  *
@@ -302,8 +303,12 @@ public class Dataset {
     // Selecciona aleatoriamente las historias clínicas para entrenamiento
     public void seleccionAleatoria(){
         int i = 0;
-        do{
-            long claveAux = (long)(historiasClinicas.size() * Math.random() + 1);
+        MersenneTwisterFast mt = new MersenneTwisterFast();                 // Generador de números pseudoaleatorios MersenneTwister
+        mt.setSeed((long)(historiasClinicas.size() * Math.random() + 1));   // Semilla     
+        do{           
+            long claveAux = (long)(mt.nextDouble() * historiasClinicas.size() + 1); 
+            System.out.println(claveAux);            
+            // long claveAux = (long)(historiasClinicas.size() * Math.random() + 1);
             if(!historiasClinicas.get(claveAux).isSeleccionado()){
                 trainingHC.put(claveAux, historiasClinicas.get(claveAux));
                 trainingHC.get(claveAux).setSeleccionado(true);
