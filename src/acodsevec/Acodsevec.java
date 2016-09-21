@@ -5,6 +5,9 @@
  */
 package acodsevec;
 
+import logica.DatasetLogica;
+import modelo.Dataset;
+
 /**
  *
  * @author crisd
@@ -15,18 +18,18 @@ public class Acodsevec {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Dataset ds = new Dataset();
-        ds.crearDataset();
-        ds.imprimirDiagnosticos();
-        ds.imprimirEnfermedades();
-        ds.imprimirSintomas();
-        ds.seleccionAleatoria();
-        ds.imprimirDiagnosticosSeleccionados();
-        ds.entrenamiento();
-        ds.crearConjuntoPrueba();
-        ds.imprimirDiagnosticosPrueba();
-        ds.pruebas();
-        ds.estadisticas();
+        DatasetLogica dslogic = new DatasetLogica();
+        
+        dslogic.imprimirDiagnosticos();
+        dslogic.imprimirEnfermedades();
+        dslogic.imprimirSintomas();
+        // ds.seleccionAleatoria();
+        // ds.imprimirDiagnosticosSeleccionados();
+        dslogic.entrenamiento();
+        // ds.crearConjuntoPrueba();
+        // ds.imprimirDiagnosticosPrueba();
+        dslogic.pruebas();
+        dslogic.estadisticas();
     }
     
 }
