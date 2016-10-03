@@ -91,36 +91,7 @@ public class DatasetLogica {
             System.out.println(symptoms + " ");
         }
         System.out.print("\n");        
-    }
-    
-    // Selecciona aleatoriamente las historias clínicas para entrenamiento
-    public void seleccionAleatoria(){
-        int i = 0;
-        MersenneTwisterFast mt = new MersenneTwisterFast();                 // Generador de números pseudoaleatorios MersenneTwister
-        mt.setSeed((long)(hcs.size() * Math.random() + 1));   // Semilla     
-        do{           
-            long claveAux = (long)(mt.nextDouble() * hcs.size() + 1); 
-            System.out.println(claveAux);            
-            // long claveAux = (long)(hcs.size() * Math.random() + 1);
-            if(!hcs.get(claveAux).isSeleccionado()){
-                trainingHC.put(claveAux, hcs.get(claveAux));
-                trainingHC.get(claveAux).setSeleccionado(true);
-                i++;
-            }
-        }
-        while(i < hcs.size() * 0.8);
-    }
-    
-    // Impresión de historias clínicas seleccionadas aleatoriamente    
-    public void imprimirDiagnosticosSeleccionados(){
-        for (long key : trainingHC.keySet()) {
-            System.out.print(trainingHC.get(key).getReferencia() + " | ");
-            System.out.print(trainingHC.get(key).getEnfermedad() + " | ");
-            System.out.print(Arrays.toString(trainingHC.get(key).getSintomas()));
-            System.out.print("\n");
-        }
-        System.out.print("\n");
-    }
+    }    
     
     // Entrena al sistema mediante el algoritmo de clustering Modelo basado en número de palabras
     public void entrenamiento(){
@@ -268,6 +239,35 @@ public class DatasetLogica {
     }    
     
 //----------------------- Funciones auxiliares para las operaciones del Dataset --------------------------------
+
+    // Selecciona aleatoriamente las historias clínicas para entrenamiento
+    public void seleccionAleatoria(){
+        int i = 0;
+        MersenneTwisterFast mt = new MersenneTwisterFast();                 // Generador de números pseudoaleatorios MersenneTwister
+        mt.setSeed((long)(hcs.size() * Math.random() + 1));   // Semilla     
+        do{           
+            long claveAux = (long)(mt.nextDouble() * hcs.size() + 1); 
+            // System.out.println(claveAux);            
+            // long claveAux = (long)(hcs.size() * Math.random() + 1);
+            if(!hcs.get(claveAux).isSeleccionado()){
+                trainingHC.put(claveAux, hcs.get(claveAux));
+                trainingHC.get(claveAux).setSeleccionado(true);
+                i++;
+            }
+        }
+        while(i < hcs.size() * 0.8);
+    }
+    
+    // Impresión de historias clínicas seleccionadas aleatoriamente    
+    public void imprimirDiagnosticosSeleccionados(){
+        for (long key : trainingHC.keySet()) {
+            System.out.print(trainingHC.get(key).getReferencia() + " | ");
+            System.out.print(trainingHC.get(key).getEnfermedad() + " | ");
+            System.out.print(Arrays.toString(trainingHC.get(key).getSintomas()));
+            System.out.print("\n");
+        }
+        System.out.print("\n");
+    }    
     
     // Función auxiliar para normalizar la tabla (Valor elemento sobre la norma vectorial)
     public double [][] normalizacion(int [][] tabla){
