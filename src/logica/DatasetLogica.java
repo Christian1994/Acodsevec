@@ -39,11 +39,20 @@ public class DatasetLogica {
 
     private int cantidadAciertos = 0;
     private int cantidadDesaciertos = 0;
+    private double porcentajePrecision = 0.0;    
     
     public DatasetLogica(){
         
     }
 
+    public double getPorcentajePrecision() {
+        return porcentajePrecision;
+    }
+
+    public void setPorcentajePrecision(double porcentajePrecision) {
+        this.porcentajePrecision = porcentajePrecision;
+    }    
+    
     // Impresión de datos de cada Diagnóstico    
     public void imprimirDiagnosticos(){
         for (long key : hcs.keySet()) {
@@ -228,6 +237,9 @@ public class DatasetLogica {
     
     // Muestra las estadísticas
     public void estadisticas(){
+        DecimalFormat formateador = new DecimalFormat("0.00");
+        porcentajePrecision = ((double)cantidadAciertos / testingHC.size()) * 100;        
+        
         System.out.println("Cantidad de Historias clínicas: " + hcs.size());
         System.out.println("Cantidad de Enfermedades: " + diseasesSet.size());
         System.out.println("Cantidad de Síntomas: " + symptomsSet.size());
@@ -235,7 +247,8 @@ public class DatasetLogica {
         System.out.println("Cantidad de Historias clínicas seleccionadas para entrenar: " + trainingHC.size());
         System.out.println("Cantidad de Historias clínicas seleccionadas para probar: " + testingHC.size());
         System.out.println("Cantidad de aciertos: " + cantidadAciertos);
-        System.out.println("Cantidad de desaciertos: " + cantidadDesaciertos);        
+        System.out.println("Cantidad de desaciertos: " + cantidadDesaciertos);
+        System.out.println("Procentaje de precisión: " + formateador.format(porcentajePrecision) + "%");        
     }    
     
 //----------------------- Funciones auxiliares para las operaciones del Dataset --------------------------------
